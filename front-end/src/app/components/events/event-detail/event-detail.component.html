@@ -79,12 +79,24 @@
         </div>
 
         <div class="hero-actions">
-          <button (click)="buyTicket()" class="btn btn-primary btn-large">
+          <button 
+            *ngIf="event.link" 
+            (click)="buyTicket()" 
+            class="btn btn-primary btn-large">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 3h18v18H3zM21 9l-9 6-9-6"/>
+            </svg>
+            Acheter des billets
+          </button>
+          
+          <div 
+            *ngIf="!event.link" 
+            class="btn btn-primary btn-large btn-disabled">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
             </svg>
-            Réserver - {{ formatPrice(event.price || 0) }}
-          </button>
+            {{ formatPrice(event.price || 0) }}
+          </div>
           
           <button (click)="shareEvent()" class="btn btn-outline">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -95,6 +107,23 @@
               <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
             </svg>
             Partager
+          </button>
+
+          <!-- Admin Actions -->
+          <button *ngIf="isAdmin()" (click)="editEvent()" class="btn btn-outline btn-admin">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+            </svg>
+            Modifier
+          </button>
+          
+          <button *ngIf="isAdmin()" (click)="confirmDelete()" class="btn btn-outline btn-danger-outline">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="3 6 5 6 21 6"/>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+            </svg>
+            Supprimer
           </button>
         </div>
       </div>
@@ -164,9 +193,18 @@
               </div>
             </div>
             
-            <button (click)="buyTicket()" class="btn btn-primary btn-block">
-              Réserver maintenant
+            <button 
+              *ngIf="event.link" 
+              (click)="buyTicket()" 
+              class="btn btn-primary btn-block">
+              Acheter des billets
             </button>
+            
+            <div 
+              *ngIf="!event.link" 
+              class="btn btn-primary btn-block btn-disabled">
+              Prix: {{ formatPrice(event.price || 0) }}
+            </div>
           </div>
 
           <!-- Share Card -->
@@ -212,4 +250,27 @@
       </div>
     </div>
   </section>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal-overlay" *ngIf="showDeleteConfirm" (click)="cancelDelete()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>Confirmer la suppression</h2>
+      <button class="modal-close" (click)="cancelDelete()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Êtes-vous sûr de vouloir supprimer cet événement ?</p>
+      <p class="warning-text">Cette action est irréversible.</p>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" (click)="cancelDelete()">Annuler</button>
+      <button class="btn btn-danger" (click)="deleteEvent()">Supprimer</button>
+    </div>
+  </div>
 </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { EventService } from '../../../services/event.service';
+import { EventService, AuthService } from '../../../services';
 import { Event } from '../../../models';
 
 @Component({
@@ -16,11 +16,13 @@ export class EventDetailComponent implements OnInit {
   loading = true;
   error = false;
   recommendedEvents: Event[] = [];
+  showDeleteConfirm = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private eventService: EventService
+    private eventService: EventService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -108,6 +110,41 @@ export class EventDetailComponent implements OnInit {
   buyTicket(): void {
     if (this.event?.link) {
       window.open(this.event.link, '_blank');
+    }
+  }
+
+  isAdmin(): boolean {
+    const currentUser = this.authService.getCurrentUser();
+    return currentUser?.role === 'ADMIN';
+  }
+
+  editEvent(): void {
+    if (this.event?.id) {
+      this.router.navigate(['/edit-event', this.event.id]);
+    }
+  }
+
+  confirmDelete(): void {
+    this.showDeleteConfirm = true;
+  }
+
+  cancelDelete(): void {
+    this.showDeleteConfirm = false;
+  }
+
+  deleteEvent(): void {
+    if (this.event?.id) {
+      this.eventService.deleteEvent(this.event.id).subscribe({
+        next: () => {
+          alert('Événement supprimé avec succès');
+          this.router.navigate(['/events']);
+        },
+        error: (error) => {
+          console.error('Error deleting event:', error);
+          alert('Erreur lors de la suppression de l\'événement');
+          this.showDeleteConfirm = false;
+        }
+      });
     }
   }
 }
