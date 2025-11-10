@@ -14,10 +14,11 @@
   --off-white: #f5f5f5;
   --white: #ffffff;
   
-  /* Accent - Minimal Gold (WCAG AA compliant on black) */
-  --gold: #f0d45e;  /* Improved from #e6c14a for even better contrast - WCAG AAA */
-  --gold-dark: #d4af37;
-  --gold-light: #f5d971;
+  /* Accent - Vibrant Bronze (WCAG AA compliant on black) */
+  --gold: #c87b2f;
+  --gold-dark: #8e4d12;
+  --gold-light: #f0b981;
+  color-scheme: dark;
   
   /* Typography */
   --font-display: 'Bebas Neue', sans-serif;
@@ -91,6 +92,18 @@ body {
   overflow-x: hidden;
   cursor: default;
   padding-top: var(--navbar-height); /* ensure content not hidden behind fixed navbar */
+}
+
+select,
+select option {
+  background-color: var(--charcoal);
+  color: var(--white);
+}
+
+select option:checked,
+select option:hover {
+  background-color: var(--gold);
+  color: var(--black);
 }
 
 /* ========== CUSTOM CURSOR (Luxury Touch) ========== */
