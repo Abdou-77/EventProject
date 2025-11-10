@@ -40,22 +40,16 @@ export class AboutComponent {
 
   team: TeamMember[] = [
     {
-      name: 'Ava Morin',
-      role: 'Directrice Créative',
-      bio: 'Architecte d’expériences, Ava imagine l’univers visuel d’EventApp et sculpte chaque interaction.',
-      imageUrl: 'https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=600&q=80'
-    },
-    {
-      name: 'Léo Bernard',
+      name: 'Ali FASSY FEHRY',
       role: 'Head of Partnerships',
-      bio: 'Il cultive un réseau de partenaires culturels et repère les événements qui méritent d’être révélés.',
-      imageUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80'
+      bio: 'À la croisée du business et de la culture, Ali tisse les alliances qui donnent accès aux scènes les plus convoitées.',
+      imageUrl: 'https://cdn2.cvdesignr.com/u/users/656c8a506e67f/1e18c76d1f2d0768f7473b55593b5ff6c9dca492.png'
     },
     {
-      name: 'Maya Khelifi',
+      name: 'Abdellah SOFI',
       role: 'Product Lead',
-      bio: 'Obsédée par le détail, elle pilote la feuille de route produit et garantit la fluidité de la plateforme.',
-      imageUrl: 'https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=600&q=80'
+      bio: 'Ingénieur produit passionné, Abdellah orchestre la plateforme EventApp pour qu’elle reste fluide, fiable et élégante.',
+      imageUrl: 'https://cdn2.cvdesignr.com/u/users/656c8a506e67f/a53c5747458360a99e2607d5306af55386b3b0fd.jpeg'
     }
   ];
 

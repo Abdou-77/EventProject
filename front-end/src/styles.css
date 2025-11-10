@@ -93,13 +93,6 @@ body {
   padding-top: var(--navbar-height); /* ensure content not hidden behind fixed navbar */
 }
 
-/* Custom cursor only on desktop with pointer (not touch) */
-@media (hover: hover) and (pointer: fine) and (min-width: 1024px) {
-  body {
-    cursor: none;
-  }
-}
-
 /* ========== CUSTOM CURSOR (Luxury Touch) ========== */
 .cursor {
   position: fixed;
@@ -114,11 +107,9 @@ body {
   display: none;
 }
 
-/* Show cursor only on desktop with precise pointer */
-@media (hover: hover) and (pointer: fine) and (min-width: 1024px) {
-  .cursor {
-    display: block;
-  }
+/* Disable custom cursor for now to preserve système pointer */
+.cursor {
+  display: none;
 }
 
 .cursor.hover {
