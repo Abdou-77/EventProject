@@ -133,11 +133,11 @@ public class DataSeeder implements CommandLineRunner {
         // Musique Events
         events.add(createEvent(
             "Concert de David Guetta",
-            "Le célèbre DJ français présente son nouveau spectacle avec effets pyrotechniques exceptionnels.",
+            "Le célèbre DJ français présente son nouveau spectacle avec effets pyrotechniques exceptionnels. Une soirée électro inoubliable avec les plus grands hits.",
             LocalDate.of(2025, 12, 15),
             LocalTime.of(20, 30),
             new BigDecimal("75.00"),
-            "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3",
+            "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800&h=600&fit=crop",
             "https://www.ticketmaster.fr",
             categories.get(0).getId(), // Musique
             locations.get(1).getId(), // Accor Arena
@@ -147,11 +147,11 @@ public class DataSeeder implements CommandLineRunner {
 
         events.add(createEvent(
             "Festival Jazz à Vienne 2025",
-            "40ème édition du célèbre festival de jazz avec des artistes internationaux.",
+            "40ème édition du célèbre festival de jazz avec des artistes internationaux. Marcus Miller, Herbie Hancock et bien d'autres légendes du jazz.",
             LocalDate.of(2025, 7, 5),
             LocalTime.of(19, 0),
             new BigDecimal("55.00"),
-            "https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f",
+            "https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?w=800&h=600&fit=crop",
             "https://www.jazzavienne.com",
             categories.get(4).getId(), // Festival
             locations.get(2).getId(), // Philharmonie
@@ -161,11 +161,11 @@ public class DataSeeder implements CommandLineRunner {
 
         events.add(createEvent(
             "Concert Symphonique - Orchestre de Paris",
-            "Soirée exceptionnelle avec l'Orchestre de Paris sous la direction de Gustavo Dudamel.",
+            "Soirée exceptionnelle avec l'Orchestre de Paris sous la direction de Gustavo Dudamel. Au programme : Beethoven et Mahler.",
             LocalDate.of(2025, 11, 20),
             LocalTime.of(20, 0),
             new BigDecimal("45.00"),
-            "https://images.unsplash.com/photo-1465847899084-d164df4dedc6",
+            "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=800&h=600&fit=crop",
             "https://philharmoniedeparis.fr",
             categories.get(0).getId(), // Musique
             locations.get(2).getId(), // Philharmonie
@@ -176,11 +176,11 @@ public class DataSeeder implements CommandLineRunner {
         // Sport Events
         events.add(createEvent(
             "PSG vs Olympique de Marseille",
-            "Le Classique - Match de football entre les deux rivaux historiques du championnat français.",
+            "Le Classique - Match de football entre les deux rivaux historiques du championnat français. L'affrontement le plus attendu de la saison !",
             LocalDate.of(2025, 11, 30),
             LocalTime.of(21, 0),
             new BigDecimal("120.00"),
-            "https://images.unsplash.com/photo-1522778119026-d647f0596c20",
+            "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800&h=600&fit=crop",
             "https://www.psg.fr",
             categories.get(2).getId(), // Sport
             locations.get(4).getId(), // Parc des Princes
@@ -190,11 +190,11 @@ public class DataSeeder implements CommandLineRunner {
 
         events.add(createEvent(
             "Finale Top 14 Rugby",
-            "Grande finale du championnat de France de rugby au Stade de France.",
+            "Grande finale du championnat de France de rugby au Stade de France. Les deux meilleures équipes s'affrontent pour le titre de champion !",
             LocalDate.of(2025, 6, 21),
             LocalTime.of(21, 0),
             new BigDecimal("95.00"),
-            "https://images.unsplash.com/photo-1486286701208-1d58e9338013",
+            "https://images.unsplash.com/photo-1486286701208-1d58e9338013?w=800&h=600&fit=crop",
             "https://www.lnr.fr",
             categories.get(2).getId(), // Sport
             locations.get(0).getId(), // Stade de France
@@ -205,11 +205,11 @@ public class DataSeeder implements CommandLineRunner {
         // Théâtre Events
         events.add(createEvent(
             "Le Misanthrope - Comédie Française",
-            "Chef-d'œuvre de Molière revisité dans une mise en scène contemporaine époustouflante.",
+            "Chef-d'œuvre de Molière revisité dans une mise en scène contemporaine époustouflante. Une réflexion mordante sur la société et l'authenticité.",
             LocalDate.of(2025, 12, 10),
             LocalTime.of(19, 30),
             new BigDecimal("38.00"),
-            "https://images.unsplash.com/photo-1503095396549-807759245b35",
+            "https://images.unsplash.com/photo-1503095396549-807759245b35?w=800&h=600&fit=crop",
             "https://www.comedie-francaise.fr",
             categories.get(1).getId(), // Théâtre
             locations.get(3).getId(), // Musée du Louvre area
@@ -220,11 +220,11 @@ public class DataSeeder implements CommandLineRunner {
         // Art & Exposition Events
         events.add(createEvent(
             "Exposition Monet - Impressionnisme",
-            "Rétrospective exceptionnelle des œuvres de Claude Monet avec plus de 150 tableaux.",
+            "Rétrospective exceptionnelle des œuvres de Claude Monet avec plus de 150 tableaux. Plongez dans l'univers des Nymphéas et de la lumière impressionniste.",
             LocalDate.of(2025, 11, 15),
             LocalTime.of(10, 0),
             new BigDecimal("18.00"),
-            "https://images.unsplash.com/photo-1577083552431-6e5fd01988ec",
+            "https://images.unsplash.com/photo-1577083552431-6e5fd01988ec?w=800&h=600&fit=crop",
             "https://www.louvre.fr",
             categories.get(3).getId(), // Art
             locations.get(3).getId(), // Musée du Louvre
@@ -234,11 +234,11 @@ public class DataSeeder implements CommandLineRunner {
 
         events.add(createEvent(
             "Exposition - Trésors de l'Égypte Antique",
-            "Découvrez les mystères des pharaons avec des objets jamais exposés en France.",
+            "Découvrez les mystères des pharaons avec des objets jamais exposés en France. Sarcophages, bijoux et artefacts millénaires vous attendent.",
             LocalDate.of(2025, 12, 1),
             LocalTime.of(9, 0),
             new BigDecimal("22.00"),
-            "https://images.unsplash.com/photo-1595433707802-6b2626ef1c91",
+            "https://images.unsplash.com/photo-1595433707802-6b2626ef1c91?w=800&h=600&fit=crop",
             "https://www.confluences.fr",
             categories.get(3).getId(), // Art
             locations.get(6).getId(), // Musée des Confluences
@@ -249,11 +249,11 @@ public class DataSeeder implements CommandLineRunner {
         // Festival Events
         events.add(createEvent(
             "Les Nuits de Fourvière",
-            "Festival pluridisciplinaire dans le cadre magique du théâtre antique de Lyon.",
+            "Festival pluridisciplinaire dans le cadre magique du théâtre antique de Lyon. Musique, danse, théâtre et cinéma sous les étoiles.",
             LocalDate.of(2025, 7, 15),
             LocalTime.of(21, 30),
             new BigDecimal("42.00"),
-            "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3",
+            "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&h=600&fit=crop",
             "https://www.nuitsdefourviere.com",
             categories.get(4).getId(), // Festival
             locations.get(5).getId(), // Halle Tony Garnier
@@ -263,11 +263,11 @@ public class DataSeeder implements CommandLineRunner {
 
         events.add(createEvent(
             "Fête de la Musique Paris",
-            "Concerts gratuits dans toute la ville pour célébrer l'arrivée de l'été.",
+            "Concerts gratuits dans toute la ville pour célébrer l'arrivée de l'été. Plus de 1000 concerts dans tous les quartiers de Paris !",
             LocalDate.of(2025, 6, 21),
             LocalTime.of(18, 0),
             new BigDecimal("0.00"),
-            "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f",
+            "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop",
             "https://fetedelamusique.paris",
             categories.get(4).getId(), // Festival
             locations.get(2).getId(), // Philharmonie
@@ -278,11 +278,11 @@ public class DataSeeder implements CommandLineRunner {
         // Gastronomie Events
         events.add(createEvent(
             "Salon du Chocolat Paris",
-            "Le plus grand événement mondial dédié au chocolat et au cacao avec dégustations.",
+            "Le plus grand événement mondial dédié au chocolat et au cacao. Dégustations, défilés de robes en chocolat et rencontres avec les meilleurs chocolatiers.",
             LocalDate.of(2025, 10, 28),
             LocalTime.of(10, 0),
             new BigDecimal("15.00"),
-            "https://images.unsplash.com/photo-1511381939415-e44015466834",
+            "https://images.unsplash.com/photo-1511381939415-e44015466834?w=800&h=600&fit=crop",
             "https://www.salon-du-chocolat.com",
             categories.get(5).getId(), // Gastronomie
             locations.get(1).getId(), // Accor Arena
@@ -292,11 +292,11 @@ public class DataSeeder implements CommandLineRunner {
 
         events.add(createEvent(
             "Bordeaux Fête le Vin",
-            "Festival bisannuel célébrant les vins de Bordeaux avec dégustations sur les quais.",
+            "Festival bisannuel célébrant les vins de Bordeaux. Dégustations de grands crus, ateliers œnologiques et animations sur les quais de la Garonne.",
             LocalDate.of(2026, 6, 18),
             LocalTime.of(11, 0),
             new BigDecimal("25.00"),
-            "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3",
+            "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&h=600&fit=crop",
             "https://www.bordeaux-fete-le-vin.com",
             categories.get(5).getId(), // Gastronomie
             locations.get(9).getId(), // Matmut Atlantique
@@ -307,11 +307,11 @@ public class DataSeeder implements CommandLineRunner {
         // Cinéma Events
         events.add(createEvent(
             "Festival de Cannes - Projection Spéciale",
-            "Avant-première mondiale d'un film français très attendu.",
+            "Avant-première mondiale d'un film français très attendu. Rencontre avec les réalisateurs et acteurs après la projection.",
             LocalDate.of(2025, 5, 20),
             LocalTime.of(20, 0),
             new BigDecimal("50.00"),
-            "https://images.unsplash.com/photo-1478720568477-152d9b164e26",
+            "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800&h=600&fit=crop",
             "https://www.festival-cannes.fr",
             categories.get(6).getId(), // Cinéma
             locations.get(10).getId(), // Allianz Riviera
@@ -322,11 +322,11 @@ public class DataSeeder implements CommandLineRunner {
         // Conférence Events
         events.add(createEvent(
             "TedX Paris - Innovation & Futur",
-            "Conférence inspirante avec des speakers internationaux sur les technologies du futur.",
+            "Conférence inspirante avec des speakers internationaux. IA, robotique, biotechnologies : découvrez les innovations qui changeront demain.",
             LocalDate.of(2025, 11, 5),
             LocalTime.of(14, 0),
             new BigDecimal("35.00"),
-            "https://images.unsplash.com/photo-1505373877841-8d25f7d46678",
+            "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&h=600&fit=crop",
             "https://www.tedxparis.com",
             categories.get(7).getId(), // Conférence
             locations.get(1).getId(), // Accor Arena
@@ -336,11 +336,11 @@ public class DataSeeder implements CommandLineRunner {
 
         events.add(createEvent(
             "Salon du Livre de Paris",
-            "Le plus grand rassemblement littéraire de France avec rencontres d'auteurs.",
+            "Le plus grand rassemblement littéraire de France. Plus de 1200 auteurs, dédicaces, conférences et animations pour petits et grands.",
             LocalDate.of(2025, 3, 15),
             LocalTime.of(9, 30),
             new BigDecimal("12.00"),
-            "https://images.unsplash.com/photo-1481627834876-b7833e8f5570",
+            "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=600&fit=crop",
             "https://www.livreparis.com",
             categories.get(7).getId(), // Conférence
             locations.get(0).getId(), // Stade de France area
@@ -351,11 +351,11 @@ public class DataSeeder implements CommandLineRunner {
         // Additional Music Events
         events.add(createEvent(
             "Stromae - Tournée Multitude",
-            "Le retour triomphal de Stromae avec son nouvel album acclamé par la critique.",
+            "Le retour triomphal de Stromae avec son nouvel album acclamé par la critique. Chorégraphies innovantes et mise en scène théâtrale pour une expérience unique.",
             LocalDate.of(2025, 12, 20),
             LocalTime.of(20, 0),
             new BigDecimal("85.00"),
-            "https://images.unsplash.com/photo-1540039155733-5bb30b53aa14",
+            "https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=800&h=600&fit=crop",
             "https://www.stromae.com",
             categories.get(0).getId(), // Musique
             locations.get(7).getId(), // Stade Vélodrome
@@ -365,11 +365,11 @@ public class DataSeeder implements CommandLineRunner {
 
         events.add(createEvent(
             "Christine and the Queens - Concert Live",
-            "Spectacle visuel et musical époustouflant de l'artiste française primée.",
+            "Spectacle visuel et musical époustouflant de l'artiste française primée. Performance énergique mêlant pop, électro et danse contemporaine.",
             LocalDate.of(2025, 11, 25),
             LocalTime.of(20, 30),
             new BigDecimal("68.00"),
-            "https://images.unsplash.com/photo-1501386761578-eac5c94b800a",
+            "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=800&h=600&fit=crop",
             "https://www.christineandthequeens.com",
             categories.get(0).getId(), // Musique
             locations.get(5).getId(), // Halle Tony Garnier Lyon
@@ -379,11 +379,11 @@ public class DataSeeder implements CommandLineRunner {
 
         events.add(createEvent(
             "Daft Punk Tribute Show",
-            "Hommage spectaculaire au duo légendaire avec effets lasers et pyrotechnie.",
+            "Hommage spectaculaire au duo légendaire avec effets lasers et pyrotechnie. Revivez l'euphorie des concerts mythiques avec les plus grands tubes électro.",
             LocalDate.of(2025, 12, 31),
             LocalTime.of(22, 0),
             new BigDecimal("90.00"),
-            "https://images.unsplash.com/photo-1514525253161-7a46d19cd819",
+            "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&h=600&fit=crop",
             "https://www.daftpunktribute.fr",
             categories.get(0).getId(), // Musique
             locations.get(1).getId(), // Accor Arena
@@ -393,11 +393,11 @@ public class DataSeeder implements CommandLineRunner {
 
         events.add(createEvent(
             "Festival Électro Lyon",
-            "Les meilleurs DJs européens réunis pour une nuit électro inoubliable.",
+            "Les meilleurs DJs européens réunis pour une nuit électro inoubliable. Techno, house, trance : 12h de musique non-stop sur 3 scènes.",
             LocalDate.of(2025, 9, 12),
             LocalTime.of(20, 0),
             new BigDecimal("45.00"),
-            "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7",
+            "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&h=600&fit=crop",
             "https://www.festivalelectrolyon.fr",
             categories.get(4).getId(), // Festival
             locations.get(5).getId(), // Halle Tony Garnier
@@ -408,11 +408,11 @@ public class DataSeeder implements CommandLineRunner {
         // More Sport Events
         events.add(createEvent(
             "Roland-Garros - Finale Messieurs",
-            "Grande finale du tournoi de tennis français, l'un des quatre tournois du Grand Chelem.",
+            "Grande finale du tournoi de tennis français, l'un des quatre tournois du Grand Chelem. Les meilleurs joueurs mondiaux s'affrontent sur terre battue pour le titre suprême.",
             LocalDate.of(2025, 6, 8),
             LocalTime.of(15, 0),
             new BigDecimal("250.00"),
-            "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff",
+            "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=800&h=600&fit=crop",
             "https://www.rolandgarros.com",
             categories.get(2).getId(), // Sport
             locations.get(4).getId(), // Parc des Princes area
@@ -422,11 +422,11 @@ public class DataSeeder implements CommandLineRunner {
 
         events.add(createEvent(
             "Tour de France - Arrivée Champs-Élysées",
-            "L'arrivée mythique de la dernière étape du Tour de France sur les Champs-Élysées.",
+            "L'arrivée mythique de la dernière étape du Tour de France sur les Champs-Élysées. Ambiance festive garantie pour célébrer le maillot jaune ! Accès gratuit.",
             LocalDate.of(2025, 7, 27),
             LocalTime.of(14, 0),
             new BigDecimal("0.00"),
-            "https://images.unsplash.com/photo-1541625602330-2277a4c46182",
+            "https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=800&h=600&fit=crop",
             "https://www.letour.fr",
             categories.get(2).getId(), // Sport
             locations.get(4).getId(), // Paris
@@ -436,11 +436,11 @@ public class DataSeeder implements CommandLineRunner {
 
         events.add(createEvent(
             "Marathon de Paris 2025",
-            "42,195 km à travers les plus beaux monuments de la capitale française.",
+            "42,195 km à travers les plus beaux monuments de la capitale française. Traversez Paris de la Tour Eiffel aux Champs-Élysées dans une ambiance unique !",
             LocalDate.of(2025, 4, 6),
             LocalTime.of(8, 30),
             new BigDecimal("120.00"),
-            "https://images.unsplash.com/photo-1452626038306-9aae5e071dd3",
+            "https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?w=800&h=600&fit=crop",
             "https://www.schneiderelectricparismarathon.com",
             categories.get(2).getId(), // Sport
             locations.get(4).getId(), // Paris
@@ -451,11 +451,11 @@ public class DataSeeder implements CommandLineRunner {
         // More Theatre Events
         events.add(createEvent(
             "Cyrano de Bergerac",
-            "La célèbre pièce d'Edmond Rostand dans une mise en scène moderne et audacieuse.",
+            "La célèbre pièce d'Edmond Rostand dans une mise en scène moderne et audacieuse. L'histoire intemporelle du poète au grand cœur revisitée avec brio.",
             LocalDate.of(2025, 10, 18),
             LocalTime.of(20, 0),
             new BigDecimal("42.00"),
-            "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf",
+            "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?w=800&h=600&fit=crop",
             "https://www.theatre-paris.com",
             categories.get(1).getId(), // Théâtre
             locations.get(2).getId(), // Philharmonie area
@@ -465,11 +465,11 @@ public class DataSeeder implements CommandLineRunner {
 
         events.add(createEvent(
             "Les Liaisons Dangereuses",
-            "Chef-d'œuvre du théâtre français avec une distribution prestigieuse.",
+            "Chef-d'œuvre du théâtre français avec une distribution prestigieuse. Intrigues, séduction et manipulation dans l'aristocratie du XVIIIe siècle.",
             LocalDate.of(2025, 11, 8),
             LocalTime.of(19, 0),
             new BigDecimal("55.00"),
-            "https://images.unsplash.com/photo-1516541196182-6bdb0516ed27",
+            "https://images.unsplash.com/photo-1516541196182-6bdb0516ed27?w=800&h=600&fit=crop",
             "https://www.theatre-odeon.fr",
             categories.get(1).getId(), // Théâtre
             locations.get(3).getId(), // Paris
@@ -479,11 +479,11 @@ public class DataSeeder implements CommandLineRunner {
 
         events.add(createEvent(
             "Roméo et Juliette - Ballet",
-            "Interprétation magistrale du ballet classique par l'Opéra de Paris.",
+            "Interprétation magistrale du ballet classique par l'Opéra de Paris. Prokofiev et Shakespeare réunis pour une soirée inoubliable de grâce et d'émotion.",
             LocalDate.of(2025, 12, 5),
             LocalTime.of(19, 30),
             new BigDecimal("78.00"),
-            "https://images.unsplash.com/photo-1518834107812-67b0b7c58434",
+            "https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=800&h=600&fit=crop",
             "https://www.operadeparis.fr",
             categories.get(1).getId(), // Théâtre
             locations.get(2).getId(), // Philharmonie
@@ -494,11 +494,11 @@ public class DataSeeder implements CommandLineRunner {
         // More Art & Expositions
         events.add(createEvent(
             "Van Gogh - L'Expérience Immersive",
-            "Plongez dans l'univers du maître avec des projections géantes à 360°.",
+            "Plongez dans l'univers du maître avec des projections géantes à 360°. Découvrez les Tournesols, la Nuit Étoilée et bien d'autres chefs-d'œuvre.",
             LocalDate.of(2025, 10, 1),
             LocalTime.of(10, 0),
             new BigDecimal("24.00"),
-            "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5",
+            "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800&h=600&fit=crop",
             "https://www.vangogh-expo.com",
             categories.get(3).getId(), // Art
             locations.get(1).getId(), // Accor Arena
@@ -508,11 +508,11 @@ public class DataSeeder implements CommandLineRunner {
 
         events.add(createEvent(
             "Picasso et les Maîtres",
-            "Dialogue artistique entre Picasso et les grands maîtres de l'histoire de l'art.",
+            "Dialogue artistique entre Picasso et les grands maîtres de l'histoire de l'art. Une exposition unique mettant en lumière les influences du génie cubiste.",
             LocalDate.of(2025, 9, 15),
             LocalTime.of(9, 30),
             new BigDecimal("16.00"),
-            "https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8",
+            "https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?w=800&h=600&fit=crop",
             "https://www.musee-picasso.fr",
             categories.get(3).getId(), // Art
             locations.get(3).getId(), // Musée du Louvre
@@ -523,11 +523,11 @@ public class DataSeeder implements CommandLineRunner {
         // More Festival Events
         events.add(createEvent(
             "Festival d'Avignon",
-            "Le plus important festival de théâtre et des arts vivants au monde.",
+            "Le plus important festival de théâtre et des arts vivants au monde. Plus de 40 spectacles dans des lieux prestigieux et insolites.",
             LocalDate.of(2025, 7, 10),
             LocalTime.of(18, 0),
             new BigDecimal("38.00"),
-            "https://images.unsplash.com/photo-1492684223066-81342ee5ff30",
+            "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=600&fit=crop",
             "https://www.festival-avignon.com",
             categories.get(4).getId(), // Festival
             locations.get(6).getId(), // Lyon area
@@ -537,11 +537,11 @@ public class DataSeeder implements CommandLineRunner {
 
         events.add(createEvent(
             "Nuit Blanche Paris",
-            "Art contemporain gratuit toute la nuit dans les rues de Paris.",
+            "Art contemporain gratuit toute la nuit dans les rues de Paris. Installations, performances et œuvres éphémères dans toute la capitale.",
             LocalDate.of(2025, 10, 4),
             LocalTime.of(19, 0),
             new BigDecimal("0.00"),
-            "https://images.unsplash.com/photo-1509824227185-9c5a01ceba0d",
+            "https://images.unsplash.com/photo-1509824227185-9c5a01ceba0d?w=800&h=600&fit=crop",
             "https://www.nuitblanche.paris",
             categories.get(4).getId(), // Festival
             locations.get(3).getId(), // Paris
@@ -551,11 +551,11 @@ public class DataSeeder implements CommandLineRunner {
 
         events.add(createEvent(
             "Fête des Lumières Lyon",
-            "Festival lumineux spectaculaire pendant 4 jours dans toute la ville de Lyon.",
+            "Festival lumineux spectaculaire pendant 4 jours dans toute la ville de Lyon. Installations monumentales et mapping vidéo époustouflants.",
             LocalDate.of(2025, 12, 8),
             LocalTime.of(18, 0),
             new BigDecimal("0.00"),
-            "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86",
+            "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=800&h=600&fit=crop",
             "https://www.fetedeslumieres.lyon.fr",
             categories.get(4).getId(), // Festival
             locations.get(5).getId(), // Lyon
@@ -566,11 +566,11 @@ public class DataSeeder implements CommandLineRunner {
         // More Gastronomie Events
         events.add(createEvent(
             "Bocuse d'Or - Finale Mondiale",
-            "Le plus prestigieux concours de gastronomie au monde à Lyon.",
+            "Le plus prestigieux concours de gastronomie au monde à Lyon. Les meilleurs chefs s'affrontent pour le titre suprême de la cuisine française.",
             LocalDate.of(2025, 9, 23),
             LocalTime.of(11, 0),
             new BigDecimal("150.00"),
-            "https://images.unsplash.com/photo-1414235077428-338989a2e8c0",
+            "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
             "https://www.bocusedor.com",
             categories.get(5).getId(), // Gastronomie
             locations.get(5).getId(), // Lyon
@@ -580,11 +580,11 @@ public class DataSeeder implements CommandLineRunner {
 
         events.add(createEvent(
             "Foire aux Vins de Colmar",
-            "La plus ancienne foire aux vins de France avec plus de 600 exposants.",
+            "La plus ancienne foire aux vins de France avec plus de 600 exposants. Dégustations, rencontres avec les vignerons et animations œnologiques.",
             LocalDate.of(2025, 8, 5),
             LocalTime.of(10, 0),
             new BigDecimal("10.00"),
-            "https://images.unsplash.com/photo-1547595628-c61a29f496f0",
+            "https://images.unsplash.com/photo-1547595628-c61a29f496f0?w=800&h=600&fit=crop",
             "https://www.foire-colmar.com",
             categories.get(5).getId(), // Gastronomie
             locations.get(0).getId(), // Stade de France area
@@ -595,11 +595,11 @@ public class DataSeeder implements CommandLineRunner {
         // More Cinema Events
         events.add(createEvent(
             "Festival Lumière Lyon",
-            "Célébration du patrimoine cinématographique avec rétrospectives et avant-premières.",
+            "Célébration du patrimoine cinématographique avec rétrospectives et avant-premières. Hommages aux plus grandes figures du 7ème art.",
             LocalDate.of(2025, 10, 12),
             LocalTime.of(14, 0),
             new BigDecimal("28.00"),
-            "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba",
+            "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=800&h=600&fit=crop",
             "https://www.festival-lumiere.org",
             categories.get(6).getId(), // Cinéma
             locations.get(5).getId(), // Lyon
@@ -609,11 +609,11 @@ public class DataSeeder implements CommandLineRunner {
 
         events.add(createEvent(
             "Nuit des Oscars - Projection & Cérémonie",
-            "Suivez la cérémonie en direct avec projection sur grand écran et cocktail.",
+            "Suivez la cérémonie en direct avec projection sur grand écran et cocktail. Ambiance Hollywood garantie avec tapis rouge et dress code.",
             LocalDate.of(2026, 2, 22),
             LocalTime.of(2, 0),
             new BigDecimal("35.00"),
-            "https://images.unsplash.com/photo-1485846234645-a62644f84728",
+            "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&h=600&fit=crop",
             "https://www.ugc.fr",
             categories.get(6).getId(), // Cinéma
             locations.get(1).getId(), // Accor Arena
@@ -624,11 +624,11 @@ public class DataSeeder implements CommandLineRunner {
         // More Conference Events
         events.add(createEvent(
             "VivaTech Paris 2025",
-            "Le plus grand salon européen de l'innovation technologique et des startups.",
+            "Le plus grand salon européen de l'innovation technologique et des startups. IA, robotique, blockchain : découvrez les technologies de demain.",
             LocalDate.of(2025, 5, 22),
             LocalTime.of(9, 0),
             new BigDecimal("99.00"),
-            "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
+            "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop",
             "https://www.vivatechnology.com",
             categories.get(7).getId(), // Conférence
             locations.get(0).getId(), // Stade de France

@@ -1,18 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Category } from '../models/event.model';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { Category } from '../models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
-  private apiUrl = 'http://localhost:8080/api/categories';
+  private apiUrl = '/api/categories';
+  private categoriesSubject = new BehaviorSubject<Category[]>([]);
+  public categories$ = this.categoriesSubject.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getAllCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.apiUrl);
+    return this.http.get<Category[]>(this.apiUrl).pipe(
+      tap(categories => this.categoriesSubject.next(categories))
+    );
   }
 
   getCategoryById(id: number): Observable<Category> {
@@ -29,6 +34,10 @@ export class CategoryService {
 
   deleteCategory(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  getCategoriesWithCount(): Observable<Category[]> {
+    return this.http.get<Category[]>(`${this.apiUrl}/with-count`);
   }
 }
 

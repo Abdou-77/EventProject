@@ -1,0 +1,62 @@
+services:
+  db:
+    image: mysql:8.4
+    container_name: event_db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: eventdb
+      MYSQL_USER: eventuser
+      MYSQL_PASSWORD: eventpass
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --mysql-native-password=ON
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - eventnet
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  backend:
+    build: ./back-end
+    container_name: event_backend
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: eventdb
+      DB_USER: root
+      DB_PASSWORD: rootpassword
+      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - "8081:8080"
+    networks:
+      - eventnet
+
+  frontend:
+    build: ./front-end
+    container_name: event_frontend
+    depends_on:
+      backend:
+        condition: service_started
+    ports:
+      - "8000:80"
+    networks:
+      - eventnet
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost" ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+networks:
+  eventnet:
+    driver: bridge
+
+volumes:
+  db_data:

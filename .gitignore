@@ -1,0 +1,53 @@
+# Project-wide Git ignore rules
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Docker volumes
+db_data/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Build artifacts (backend)
+back-end/target/
+back-end/build/
+back-end/*.jar
+back-end/*.war
+
+# Build artifacts (frontend)
+front-end/dist/
+front-end/build/
+front-end/.angular/
+
+# Dependencies
+front-end/node_modules/
+back-end/node_modules/
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+coverage/
+.nyc_output/
+
+# Temporary files
+*.tmp
+*.bak
+*.cache
+*.pid

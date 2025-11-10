@@ -1,30 +1,46 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Event } from '../models/event.model';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { Event, EventFilter, PaginatedResponse, ApiResponse } from '../models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventService {
-  private apiUrl = 'http://localhost:8080/api/events';
+  private apiUrl = '/api/events';
+  private eventsSubject = new BehaviorSubject<Event[]>([]);
+  public events$ = this.eventsSubject.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getAllEvents(): Observable<Event[]> {
-    return this.http.get<Event[]>(this.apiUrl);
+  getAllEvents(filter?: EventFilter): Observable<PaginatedResponse<Event>> {
+    let params = new HttpParams();
+
+    if (filter) {
+      Object.keys(filter).forEach(key => {
+        const value = filter[key as keyof EventFilter];
+        if (value !== undefined && value !== null && value !== '') {
+          params = params.set(key, value.toString());
+        }
+      });
+    }
+
+    return this.http.get<PaginatedResponse<Event>>(this.apiUrl, { params });
+  }
+
+  getPublishedEvents(): Observable<Event[]> {
+    return this.http.get<Event[]>(`${this.apiUrl}/published`).pipe(
+      tap(events => this.eventsSubject.next(events))
+    );
+  }
+
+  getFeaturedEvents(): Observable<Event[]> {
+    return this.http.get<Event[]>(`${this.apiUrl}/featured`);
   }
 
   getEventById(id: number): Observable<Event> {
     return this.http.get<Event>(`${this.apiUrl}/${id}`);
-  }
-
-  getPublishedEvents(): Observable<Event[]> {
-    return this.http.get<Event[]>(`${this.apiUrl}/published`);
-  }
-
-  getUpcomingEvents(): Observable<Event[]> {
-    return this.http.get<Event[]>(`${this.apiUrl}/upcoming`);
   }
 
   getEventsByCategory(categoryId: number): Observable<Event[]> {
@@ -35,8 +51,8 @@ export class EventService {
     return this.http.get<Event[]>(`${this.apiUrl}/location/${locationId}`);
   }
 
-  searchEvents(title: string): Observable<Event[]> {
-    const params = new HttpParams().set('title', title);
+  searchEvents(query: string): Observable<Event[]> {
+    const params = new HttpParams().set('q', query);
     return this.http.get<Event[]>(`${this.apiUrl}/search`, { params });
   }
 
@@ -54,6 +70,16 @@ export class EventService {
 
   incrementViewCount(id: number): Observable<void> {
     return this.http.post<void>(`${this.apiUrl}/${id}/view`, {});
+  }
+
+  getUpcomingEvents(limit: number = 10): Observable<Event[]> {
+    const params = new HttpParams().set('limit', limit.toString());
+    return this.http.get<Event[]>(`${this.apiUrl}/upcoming`, { params });
+  }
+
+  getEventsByCity(city: string): Observable<Event[]> {
+    const params = new HttpParams().set('city', city);
+    return this.http.get<Event[]>(`${this.apiUrl}/by-city`, { params });
   }
 }
 

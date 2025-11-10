@@ -4,7 +4,21 @@ Une application full-stack moderne pour gérer et découvrir des événements.
 
 ---
 
-## 📦 Structure du projet
+## ✅ YOUR APP IS READY TO USE!
+
+**Everything is configured and ready to go!** Just run:
+
+```bash
+./start-all.sh
+```
+
+Then open: **http://localhost:4200**
+
+� **Read `START_HERE.md` for complete instructions!**
+
+---
+
+## �📦 Structure du projet
 
 ```
 EventProject/
@@ -24,6 +38,43 @@ EventProject/
 ---
 
 ## 🚀 Démarrage rapide
+
+### Option Docker (recommandée)
+
+**📖 Voir [DOCKER_GUIDE.md](DOCKER_GUIDE.md) pour le guide complet**
+
+Conteneurisez tout (MySQL + Backend + Frontend) avec une seule commande.
+
+1) Construire et lancer
+
+```bash
+./start-docker.sh
+```
+
+2) Ouvrir l'application
+
+- Frontend: http://localhost:8000
+- Backend (API): http://localhost:8081
+- API via Frontend Proxy: http://localhost:8000/api/...
+- MySQL (interne au réseau docker): `db:3306` (pas exposé sur l'hôte)
+
+3) Arrêter
+
+```bash
+docker compose down
+```
+
+Notes:
+- Les services Angular appellent désormais l'API en chemin relatif (`/api/...`). Nginx route `/api` vers le backend.
+- Les variables de connexion MySQL pour le backend sont injectées via `docker-compose.yml`.
+- Les données MySQL sont persistées dans le volume `db_data`.
+
+### Option 1: One Command (Easiest!)
+```bash
+./start-all.sh
+```
+
+### Option 2: Separate Terminals
 
 ### 1️⃣ Démarrer la base de données
 ```bash
@@ -141,8 +192,30 @@ ng serve
 
 ### Le frontend ne se connecte pas au backend
 - Vérifier que le backend est démarré
-- Vérifier l'URL dans les services: `http://localhost:8080/api`
+- En Docker, l'URL est relative (`/api`). En dev local, configurez un proxy Angular si besoin (voir ci-dessous)
 - Vérifier la console du navigateur pour les erreurs CORS
+
+### Dev local Angular avec proxy `/api`
+
+Créez `front-end/proxy.conf.json` (optionnel):
+
+```json
+{
+	"/api": {
+		"target": "http://localhost:8080",
+		"secure": false,
+		"changeOrigin": true,
+		"logLevel": "debug"
+	}
+}
+```
+
+Puis démarrez:
+
+```bash
+cd front-end
+npm run start:proxy
+```
 
 ### Erreur de compilation
 ```bash

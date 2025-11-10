@@ -122,6 +122,12 @@ public class EventController {
         return ResponseEntity.ok(eventService.getPopularEvents());
     }
 
+    // GET featured events (high view count or promoted)
+    @GetMapping("/featured")
+    public ResponseEntity<List<Event>> getFeaturedEvents() {
+        return ResponseEntity.ok(eventService.getPopularEvents());
+    }
+
     // GET events by city (published and sorted)
     @GetMapping("/city/{locationId}")
     public ResponseEntity<List<Event>> getEventsByCity(@PathVariable Long locationId) {

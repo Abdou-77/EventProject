@@ -1,0 +1,268 @@
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { EventService } from '../../../services/event.service';
+import { CategoryService } from '../../../services/category.service';
+import { LocationService } from '../../../services/location.service';
+import { FavoriteService } from '../../../services/favorite.service';
+import { AuthService } from '../../../services/auth.service';
+import { Event, Category, Location, EventFilter, User } from '../../../models';
+import { getEventPlaceholder, handleImageError } from '../../../utils/image-utils';
+
+@Component({
+  selector: 'app-events-list',
+  standalone: true,
+  imports: [CommonModule, RouterModule, FormsModule],
+  templateUrl: './events-list.component.html',
+  styleUrls: ['./events-list.component.css', '../events-luxury.component.css']
+})
+export class EventsListComponent implements OnInit {
+  events: Event[] = [];
+  filteredEvents: Event[] = [];
+  categories: Category[] = [];
+  locations: Location[] = [];
+  uniqueCities: string[] = [];
+
+  // Filters
+  filters: EventFilter = {
+    search: '',
+    categoryId: undefined,
+    city: '',
+    minPrice: undefined,
+    maxPrice: undefined,
+    startDate: '',
+    sortBy: 'date',
+    sortOrder: 'asc'
+  };
+
+  // UI State
+  loading = true;
+  showFilters = false;
+  viewMode: 'grid' | 'list' = 'grid';
+  currentUser: User | null = null;
+
+  // Pagination
+  currentPage = 0;
+  pageSize = 12;
+  totalElements = 0;
+  totalPages = 0;
+
+  constructor(
+    private eventService: EventService,
+    private categoryService: CategoryService,
+    private locationService: LocationService,
+    private favoriteService: FavoriteService,
+    private authService: AuthService
+  ) {}
+
+  ngOnInit(): void {
+    this.authService.currentUser$.subscribe((user: User | null) => {
+      this.currentUser = user;
+    });
+
+    this.loadInitialData();
+  }
+
+  private loadInitialData(): void {
+    this.loading = true;
+
+    this.categoryService.getAllCategories().subscribe({
+      next: (categories: Category[]) => {
+        this.categories = categories;
+      },
+      error: (error: any) => console.error('Error loading categories:', error)
+    });
+
+    this.locationService.getUniqueCities().subscribe({
+      next: (cities: string[]) => {
+        this.uniqueCities = cities;
+      },
+      error: (error: any) => console.error('Error loading cities:', error)
+    });
+
+    this.loadEvents();
+  }
+
+  loadEvents(): void {
+    this.loading = true;
+    
+    // Use published events endpoint with client-side filtering for now
+    this.eventService.getPublishedEvents().subscribe({
+      next: (events: Event[]) => {
+        this.events = events;
+        this.applyClientSideFilters();
+        this.loading = false;
+      },
+      error: (error: any) => {
+        console.error('Error loading events:', error);
+        this.loading = false;
+      }
+    });
+  }
+
+  private applyClientSideFilters(): void {
+    let filtered = [...this.events];
+
+    // Search filter
+    if (this.filters.search) {
+      const searchLower = this.filters.search.toLowerCase();
+      filtered = filtered.filter(event =>
+        event.title?.toLowerCase().includes(searchLower) ||
+        event.description?.toLowerCase().includes(searchLower) ||
+        event.location?.city?.toLowerCase().includes(searchLower)
+      );
+    }
+
+    // Category filter
+    if (this.filters.categoryId) {
+      filtered = filtered.filter(event =>
+        event.category?.id === Number(this.filters.categoryId)
+      );
+    }
+
+    // City filter
+    if (this.filters.city) {
+      filtered = filtered.filter(event =>
+        event.location?.city === this.filters.city
+      );
+    }
+
+    // Price range filter
+    if (this.filters.minPrice !== undefined && this.filters.minPrice !== null) {
+      filtered = filtered.filter(event =>
+        event.price !== undefined && event.price >= this.filters.minPrice!
+      );
+    }
+    if (this.filters.maxPrice !== undefined && this.filters.maxPrice !== null) {
+      filtered = filtered.filter(event =>
+        event.price !== undefined && event.price <= this.filters.maxPrice!
+      );
+    }
+
+    // Date filter
+    if (this.filters.startDate) {
+      const filterDate = new Date(this.filters.startDate);
+      filtered = filtered.filter(event => {
+        if (!event.date) return false;
+        const eventDate = new Date(event.date);
+        return eventDate >= filterDate;
+      });
+    }
+
+    // Sort
+    filtered.sort((a, b) => {
+      const order = this.filters.sortOrder === 'desc' ? -1 : 1;
+      
+      if (this.filters.sortBy === 'date') {
+        const dateA = a.date ? new Date(a.date).getTime() : 0;
+        const dateB = b.date ? new Date(b.date).getTime() : 0;
+        return (dateA - dateB) * order;
+      } else if (this.filters.sortBy === 'price') {
+        return ((a.price || 0) - (b.price || 0)) * order;
+      } else if (this.filters.sortBy === 'popularity') {
+        return ((a.viewCount || 0) - (b.viewCount || 0)) * order;
+      } else if (this.filters.sortBy === 'relevance') {
+        // For relevance, prioritize events with search term in title
+        if (this.filters.search) {
+          const searchLower = this.filters.search.toLowerCase();
+          const aInTitle = a.title?.toLowerCase().includes(searchLower) ? 1 : 0;
+          const bInTitle = b.title?.toLowerCase().includes(searchLower) ? 1 : 0;
+          return (bInTitle - aInTitle) * order;
+        }
+      }
+      return 0;
+    });
+
+    // Apply pagination
+    this.totalElements = filtered.length;
+    this.totalPages = Math.ceil(filtered.length / this.pageSize);
+    const start = this.currentPage * this.pageSize;
+    const end = start + this.pageSize;
+    this.filteredEvents = filtered.slice(start, end);
+  }
+
+  applyFilters(): void {
+    this.currentPage = 0;
+    this.applyClientSideFilters();
+  }
+
+  clearFilters(): void {
+    this.filters = {
+      search: '',
+      categoryId: undefined,
+      city: '',
+      minPrice: undefined,
+      maxPrice: undefined,
+      startDate: '',
+      sortBy: 'date',
+      sortOrder: 'asc'
+    };
+    this.applyFilters();
+  }
+
+  toggleFilters(): void {
+    this.showFilters = !this.showFilters;
+  }
+
+  toggleViewMode(): void {
+    this.viewMode = this.viewMode === 'grid' ? 'list' : 'grid';
+  }
+
+  onFavoriteToggle(event: Event): void {
+    if (!this.currentUser || !event.id) return;
+
+    this.favoriteService.toggleFavorite(this.currentUser.id!, event.id).subscribe({
+      next: (result: any) => {
+        (event as any).isFavorite = result.isFavorite;
+      },
+      error: (error: any) => console.error('Error toggling favorite:', error)
+    });
+  }
+
+  formatDate(dateString: string): string {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('fr-FR', {
+      weekday: 'short',
+      day: 'numeric',
+      month: 'short'
+    });
+  }
+
+  formatPrice(price: number): string {
+    return new Intl.NumberFormat('fr-FR', {
+      style: 'currency',
+      currency: 'EUR'
+    }).format(price);
+  }
+
+  getEventStatus(event: Event): string {
+    const now = new Date();
+    const eventDate = new Date(event.date || '');
+
+    if (eventDate < now) return 'passed';
+    if (eventDate.toDateString() === now.toDateString()) return 'today';
+    return 'upcoming';
+  }
+
+  trackByEventId(index: number, event: Event): number {
+    return event.id!;
+  }
+
+  loadMore(): void {
+    if (this.currentPage < this.totalPages - 1) {
+      this.currentPage++;
+      this.applyClientSideFilters();
+      // Scroll to new content
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+  }
+
+  getEventImage(event: Event): string {
+    return event.imageUrl || getEventPlaceholder(event.category?.name);
+  }
+
+  onImageError(event: any, categoryName?: string): void {
+    handleImageError(event, categoryName);
+  }
+}

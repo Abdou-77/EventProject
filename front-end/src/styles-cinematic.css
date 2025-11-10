@@ -1,0 +1,342 @@
+/* 🎬 EventApp v3.0 - Cinematic Luxury Styles */
+
+/* ========== IMPORTS ========== */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600;700;800&family=Bodoni+Moda:wght@400;500;600;700&display=swap');
+
+/* ========== CSS VARIABLES ========== */
+:root {
+  /* Colors - Noir */
+  --noir-primary: #0A0A0A;
+  --noir-secondary: #1A1A1A;
+  --noir-tertiary: #2A2A2A;
+  --charcoal: #161616;
+
+  /* Colors - Gold */
+  --gold-primary: #D4AF37;
+  --gold-light: #F4E4B7;
+  --gold-dark: #B8941F;
+  --champagne: #F7E7CE;
+
+  /* Colors - Violet */
+  --violet-deep: #2D1B4E;
+  --violet-mid: #4A2C6B;
+  --violet-light: #6B3FA0;
+  --violet-glow: #8B5FBF;
+  --neon-violet: #B794F6;
+
+  /* Gradients */
+  --gradient-hero: linear-gradient(135deg, #0A0A0A 0%, #2D1B4E 50%, #1A1A1A 100%);
+  --gradient-gold: linear-gradient(90deg, #B8941F 0%, #D4AF37 50%, #F4E4B7 100%);
+  --gradient-violet: linear-gradient(180deg, rgba(45, 27, 78, 0.8) 0%, rgba(107, 63, 160, 0.4) 100%);
+
+  /* Glass */
+  --glass-dark: rgba(26, 26, 26, 0.7);
+  --glass-violet: rgba(107, 63, 160, 0.15);
+
+  /* Fonts */
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-accent: 'Bodoni Moda', serif;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 8rem;
+
+  /* Transitions */
+  --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.3s ease;
+}
+
+/* ========== RESET & BASE ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--noir-primary);
+  color: #FFFFFF;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ========== TYPOGRAPHY ========== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.text-hero {
+  font-size: clamp(3rem, 8vw, 8rem);
+  font-weight: 900;
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+}
+
+.text-display {
+  font-size: clamp(2.5rem, 6vw, 6rem);
+  font-weight: 700;
+}
+
+.text-editorial {
+  font-family: var(--font-accent);
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.01em;
+}
+
+/* ========== GLASSMORPHISM ========== */
+.glass {
+  background: var(--glass-dark);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 8px 32px 0 rgba(0, 0, 0, 0.37),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.glass-violet {
+  background: rgba(107, 63, 160, 0.15);
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(183, 148, 246, 0.2);
+}
+
+/* ========== GLOW EFFECTS ========== */
+.glow-gold {
+  box-shadow:
+    0 0 20px rgba(212, 175, 55, 0.3),
+    0 0 40px rgba(212, 175, 55, 0.2),
+    0 0 60px rgba(212, 175, 55, 0.1);
+}
+
+.glow-violet {
+  box-shadow:
+    0 0 30px rgba(183, 148, 246, 0.4),
+    0 0 60px rgba(183, 148, 246, 0.2);
+}
+
+.text-glow-gold {
+  text-shadow:
+    0 0 10px rgba(212, 175, 55, 0.8),
+    0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+/* ========== BUTTONS ========== */
+.btn-cinematic {
+  padding: 1.25rem 3rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  font-size: 0.9rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gold {
+  background: var(--gradient-gold);
+  color: var(--noir-primary);
+}
+
+.btn-gold:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 20px 40px rgba(212, 175, 55, 0.3),
+    0 0 60px rgba(212, 175, 55, 0.2);
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 2px solid rgba(212, 175, 55, 0.5);
+  color: var(--gold-primary);
+  backdrop-filter: blur(10px);
+}
+
+.btn-ghost:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+}
+
+/* ========== CARDS ========== */
+.card-luxury {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(26, 26, 26, 0.9) 0%,
+    rgba(45, 27, 78, 0.6) 100%
+  );
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.card-luxury:hover {
+  transform: translateY(-12px) scale(1.02);
+  border-color: rgba(212, 175, 55, 0.3);
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.5),
+    0 0 80px rgba(183, 148, 246, 0.2);
+}
+
+.card-luxury::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at top right,
+    rgba(212, 175, 55, 0.1) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.card-luxury:hover::before {
+  opacity: 1;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes cinematic-fade {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes slow-zoom {
+  from { transform: scale(1.1); }
+  to { transform: scale(1.15); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+/* ========== UTILITY CLASSES ========== */
+.cinematic-fade {
+  animation: cinematic-fade 1s ease-out;
+}
+
+.float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.gradient-text {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-padding {
+  padding: var(--space-4xl) var(--space-xl);
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding: var(--space-2xl) var(--space-md);
+  }
+}
+
+/* ========== SCROLLBAR ========== */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--noir-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gradient-gold);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-primary);
+}
+
+/* ========== ACCESSIBILITY ========== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus visible */
+*:focus-visible {
+  outline: 2px solid var(--gold-primary);
+  outline-offset: 4px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  :root {
+    font-size: 14px;
+  }
+
+  .btn-cinematic {
+    padding: 1rem 2rem;
+    font-size: 0.8rem;
+  }
+
+  .card-luxury:hover {
+    transform: translateY(-8px) scale(1.01);
+  }
+}
+
