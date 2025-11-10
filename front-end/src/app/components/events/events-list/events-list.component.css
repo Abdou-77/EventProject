@@ -288,6 +288,8 @@
 .filters-actions {
   display: flex;
   justify-content: center;
+  padding: var(--space-4) 0;
+  margin-top: var(--space-4);
 }
 
 .btn-clear {
