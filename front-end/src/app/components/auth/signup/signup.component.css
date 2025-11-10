@@ -184,6 +184,13 @@
   margin-top: var(--space-1);
 }
 
+.form-hint {
+  font-size: var(--text-xs);
+  color: var(--medium-gray);
+  font-family: var(--font-body);
+  margin-top: var(--space-1);
+}
+
 /* Checkbox */
 .form-checkbox-group {
   display: flex;
@@ -252,10 +259,11 @@
 }
 
 .btn-submit:hover:not(:disabled) {
-  background: var(--gold-light);
-  border-color: var(--gold-light);
+  background: var(--white);
+  border-color: var(--white);
+  color: var(--black);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(240, 212, 94, 0.25);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.3);
 }
 
 .btn-submit:active:not(:disabled) {
@@ -464,15 +472,25 @@
 
 /* ===== Compatibility selectors for shared markup ===== */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); padding: var(--space-3) var(--space-6); border-radius: var(--radius-sm); font-family: var(--font-accent); font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid transparent; cursor: pointer; transition: var(--transition-smooth); }
-.btn-primary { background: var(--gold); color: var(--black); border-color: var(--gold); }
-.btn-primary:hover { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(240,212,94,0.2); }
+.btn-primary {
+  background: var(--gold);
+  color: var(--black);
+  border-color: var(--gold);
+}
+.btn-primary:hover { 
+  background: var(--white); 
+  border-color: var(--white); 
+  color: var(--black);
+  transform: translateY(-2px); 
+  box-shadow: 0 8px 24px rgba(255,255,255,0.3); 
+}
 .btn-full { width: 100%; }
 
 .alert { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); color: var(--white); }
 .alert-error { background: rgba(255,136,136,0.12); border-color: rgba(255,136,136,0.3); color: #ffaaaa; }
 
-.loading-text { display: inline-flex; align-items: center; gap: var(--space-2); }
-.spinner { animation: spin 0.9s linear infinite; }
+.loading-text { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--black); }
+.spinner { animation: spin 0.9s linear infinite; stroke: var(--black); }
 
 @media (max-width: 480px) {
   .auth-container {

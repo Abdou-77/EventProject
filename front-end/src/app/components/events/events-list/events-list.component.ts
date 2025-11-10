@@ -59,9 +59,27 @@ export class EventsListComponent implements OnInit {
   ngOnInit(): void {
     this.authService.currentUser$.subscribe((user: User | null) => {
       this.currentUser = user;
+      if (user && user.id) {
+        this.loadUserFavorites(user.id);
+      }
     });
 
     this.loadInitialData();
+  }
+
+  private loadUserFavorites(userId: number): void {
+    this.favoriteService.getUserFavorites(userId).subscribe({
+      next: (favorites) => {
+        const favoriteEventIds = favorites.map(f => f.eventId);
+        this.events.forEach(event => {
+          if (event.id) {
+            event.isFavorite = favoriteEventIds.includes(event.id);
+          }
+        });
+        this.applyClientSideFilters();
+      },
+      error: (error) => console.error('Error loading favorites:', error)
+    });
   }
 
   private loadInitialData(): void {
@@ -91,7 +109,12 @@ export class EventsListComponent implements OnInit {
     this.eventService.getPublishedEvents().subscribe({
       next: (events: Event[]) => {
         this.events = events;
-        this.applyClientSideFilters();
+        // Load favorites if user is logged in
+        if (this.currentUser && this.currentUser.id) {
+          this.loadUserFavorites(this.currentUser.id);
+        } else {
+          this.applyClientSideFilters();
+        }
         this.loading = false;
       },
       error: (error: any) => {

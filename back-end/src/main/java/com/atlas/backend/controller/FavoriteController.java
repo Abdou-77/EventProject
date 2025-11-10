@@ -74,5 +74,50 @@ public class FavoriteController {
         favoriteService.deleteFavoriteByUserAndEvent(userId, eventId);
         return ResponseEntity.noContent().build();
     }
+
+    // POST toggle favorite (add if not exists, remove if exists)
+    @PostMapping("/toggle")
+    public ResponseEntity<?> toggleFavorite(@RequestBody ToggleRequest request) {
+        boolean exists = favoriteService.favoriteExists(request.getUserId(), request.getEventId());
+        
+        if (exists) {
+            // Remove from favorites
+            favoriteService.deleteFavoriteByUserAndEvent(request.getUserId(), request.getEventId());
+            return ResponseEntity.ok(new ToggleResponse(false, null));
+        } else {
+            // Add to favorites
+            Favorite favorite = new Favorite();
+            favorite.setUserId(request.getUserId());
+            favorite.setEventId(request.getEventId());
+            Favorite savedFavorite = favoriteService.addFavorite(favorite);
+            return ResponseEntity.ok(new ToggleResponse(true, savedFavorite));
+        }
+    }
+
+    // Inner classes for toggle request/response
+    public static class ToggleRequest {
+        private Long userId;
+        private Long eventId;
+
+        public Long getUserId() { return userId; }
+        public void setUserId(Long userId) { this.userId = userId; }
+        public Long getEventId() { return eventId; }
+        public void setEventId(Long eventId) { this.eventId = eventId; }
+    }
+
+    public static class ToggleResponse {
+        private boolean isFavorite;
+        private Favorite favorite;
+
+        public ToggleResponse(boolean isFavorite, Favorite favorite) {
+            this.isFavorite = isFavorite;
+            this.favorite = favorite;
+        }
+
+        public boolean getIsFavorite() { return isFavorite; }
+        public void setIsFavorite(boolean isFavorite) { this.isFavorite = isFavorite; }
+        public Favorite getFavorite() { return favorite; }
+        public void setFavorite(Favorite favorite) { this.favorite = favorite; }
+    }
 }
 

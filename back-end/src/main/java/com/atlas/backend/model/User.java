@@ -32,6 +32,12 @@ public class User {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
+    @Column(length = 20)
+    private String role = "USER"; // USER, ADMIN, ORGANIZER
+
+    @Column(columnDefinition = "TEXT")
+    private String bio;
+
     public User() {
     }
 
@@ -97,6 +103,22 @@ public class User {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 }
 

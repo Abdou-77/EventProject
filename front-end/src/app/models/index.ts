@@ -51,6 +51,7 @@ export interface User {
   avatarUrl?: string;
   createdAt?: string;
   bio?: string;
+  role?: 'USER' | 'ADMIN' | 'ORGANIZER';
   preferences?: UserPreferences;
 }
 

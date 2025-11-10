@@ -17,12 +17,15 @@ export class SignupComponent {
   user: Partial<User> = {
     name: '',
     email: '',
-    password: '',
-    locationId: undefined
+    password: ''
   };
+  
+  selectedLocationId: number | null = null;
+  selectedCity: string | null = null;
 
   confirmPassword = '';
   locations: Location[] = [];
+  uniqueCities: string[] = [];
   loading = false;
   error = '';
 
@@ -43,6 +46,9 @@ export class SignupComponent {
     this.locationService.getAllLocations().subscribe({
       next: (locations: Location[]) => {
         this.locations = locations;
+        // Extract unique cities
+        const citySet = new Set(locations.map(loc => loc.city));
+        this.uniqueCities = Array.from(citySet).sort();
       },
       error: (error: any) => console.error('Error loading locations:', error)
     });
@@ -55,6 +61,14 @@ export class SignupComponent {
 
     this.loading = true;
     this.error = '';
+
+    // Find a location for the selected city (pick the first one if multiple exist)
+    if (this.selectedCity) {
+      const location = this.locations.find(loc => loc.city === this.selectedCity);
+      if (location) {
+        this.user.locationId = location.id;
+      }
+    }
 
     this.authService.register(this.user as User).subscribe({
       next: () => {

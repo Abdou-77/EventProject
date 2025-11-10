@@ -73,13 +73,13 @@
         </label>
         <select
           id="location"
-          [(ngModel)]="user.locationId"
-          name="locationId"
+          [(ngModel)]="selectedCity"
+          name="city"
           class="form-input"
           [disabled]="loading">
-          <option [value]="undefined">Sélectionnez une ville</option>
-          <option *ngFor="let location of locations" [value]="location.id">
-            {{ location.city }}
+          <option [ngValue]="null">Sélectionnez une ville</option>
+          <option *ngFor="let city of uniqueCities" [ngValue]="city">
+            {{ city }}
           </option>
         </select>
       </div>

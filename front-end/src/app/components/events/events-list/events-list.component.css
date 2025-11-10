@@ -447,6 +447,48 @@
   box-shadow: var(--shadow-2xl);
 }
 
+/* Favorite Button */
+.btn-favorite {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+}
+
+.btn-favorite:hover {
+  background: rgba(0, 0, 0, 0.8);
+  color: var(--white);
+  transform: scale(1.1);
+}
+
+.btn-favorite.active {
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.2);
+}
+
+.btn-favorite.active:hover {
+  color: #ff5252;
+  background: rgba(255, 107, 107, 0.3);
+  transform: scale(1.15);
+}
+
+.btn-favorite svg {
+  width: 20px;
+  height: 20px;
+}
+
 .event-card.list-view {
   display: flex;
   flex-direction: row;
