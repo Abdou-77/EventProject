@@ -50,9 +50,9 @@ public class DataSeeder implements CommandLineRunner {
         List<Event> events = createEvents(categories, locations);
         System.out.println("✅ Created " + events.size() + " events");
 
-        // 4. Create Sample Users
+        // 4. Create Sample Users (including Admin)
         List<User> users = createUsers(locations);
-        System.out.println("✅ Created " + users.size() + " users");
+        System.out.println("✅ Created " + users.size() + " users (including admin)");
 
         System.out.println("🎉 Database seeding completed successfully!");
     }
@@ -670,6 +670,13 @@ public class DataSeeder implements CommandLineRunner {
         List<User> users = new ArrayList<>();
         LocalDateTime now = LocalDateTime.now();
 
+        // Create ADMIN user
+        users.add(createAdminUser("Admin EventApp", "Admin@eventapp.fr", "pass123",
+            locations.get(0).getId(), "https://i.pravatar.cc/150?img=10", now));
+
+        // Create regular users
+        users.add(createUser("Abdallah Sofi", "sofiabdou2017@gmail.com", "Abdou123",
+            locations.get(0).getId(), "https://i.pravatar.cc/150?img=11", now));
         users.add(createUser("Sophie Martin", "sophie.martin@email.fr", "password123",
             locations.get(0).getId(), "https://i.pravatar.cc/150?img=1", now));
         users.add(createUser("Thomas Dubois", "thomas.dubois@email.fr", "password123",
@@ -682,6 +689,19 @@ public class DataSeeder implements CommandLineRunner {
             locations.get(9).getId(), "https://i.pravatar.cc/150?img=5", now));
 
         return userRepository.saveAll(users);
+    }
+
+    private User createAdminUser(String name, String email, String password, Long locationId,
+                                String avatarUrl, LocalDateTime createdAt) {
+        User admin = new User();
+        admin.setName(name);
+        admin.setEmail(email);
+        admin.setPassword(password); // In production, use BCrypt
+        admin.setRole("ADMIN"); // Set admin role
+        admin.setLocationId(locationId);
+        admin.setAvatarUrl(avatarUrl);
+        admin.setCreatedAt(createdAt);
+        return admin;
     }
 
     private User createUser(String name, String email, String password, Long locationId,

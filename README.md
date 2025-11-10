@@ -108,6 +108,17 @@ docker compose down -v      # stoppe + supprime les volumes (reset DB)
 
 Rôle	Email	Mot de passe
 Admin	Admin@eventapp.fr	pass123
+User	sofiabdou2017@gmail.com	Abdou123
+
+> **✅ Important :** Ces comptes sont automatiquement créés au premier démarrage via le **DataSeeder**.
+> 
+> **🌱 Données pré-chargées au démarrage :**
+> - **8 catégories** (Musique, Théâtre, Sport, Art, Festival, Gastronomie, Cinéma, Conférence)
+> - **11 lieux** (Paris, Lyon, Marseille, Bordeaux, Nice)
+> - **36 événements** (concerts, festivals, expositions, matchs sportifs...)
+> - **7 utilisateurs** (1 admin + 6 utilisateurs standards)
+> 
+> ⚠️ Le seeding ne s'exécute qu'une seule fois. Pour réinitialiser : `docker compose down -v`
 
 
 ⸻
@@ -162,6 +173,44 @@ Design	CSS Custom Properties (thème noir & or)
 	•	Titres : majuscules espacées
 	•	Corps : sans-serif lisible
 	•	📱 Responsive : Layout flexible (grid + media queries)
+
+⸻
+
+🌱 Base de Données & Seeding
+
+### Initialisation Automatique
+
+Au premier démarrage (`docker compose up -d`), le backend exécute automatiquement le **DataSeeder** qui peuple la base de données avec :
+
+| Type de données | Quantité | Détails |
+|----------------|----------|---------|
+| **Catégories** | 8 | Musique, Théâtre, Sport, Art & Exposition, Festival, Gastronomie, Cinéma, Conférence |
+| **Localisations** | 11 | Stade de France, Accor Arena, Philharmonie, Musée du Louvre, Parc des Princes, etc. |
+| **Événements** | 36 | Concerts, festivals, matchs, expositions, conférences avec dates réelles |
+| **Utilisateurs** | 7 | 1 admin (`Admin@eventapp.fr`) + 6 utilisateurs standards |
+
+### Comment ça fonctionne ?
+
+```java
+// Le DataSeeder vérifie si des données existent déjà
+if (categoryRepository.count() > 0) {
+    System.out.println("✅ Database already populated. Skipping seed.");
+    return;
+}
+// Sinon, il crée toutes les données...
+```
+
+### Réinitialiser la base
+
+```bash
+# Supprimer les conteneurs ET les volumes (reset complet)
+docker compose down -v
+
+# Redémarrer (le seeding s'exécutera à nouveau)
+docker compose up -d
+```
+
+> **💡 Astuce :** Le seeding ne s'exécute qu'une seule fois. Si vous voyez "✅ Database already populated" dans les logs, c'est normal !
 
 ⸻
 
@@ -220,11 +269,54 @@ Libre de réutilisation et d’adaptation à des fins pédagogiques.
 ✅ Statut du Projet
 
 Composant	État
-Backend	✅ Complet (CRUD, Auth, Favoris)
+Backend	✅ Complet (CRUD, Auth, Favoris, Seeding auto)
 Frontend	✅ Fonctionnel et responsive
 Intégration	✅ API connectée via Nginx
 Documentation	✅ Complète
 Docker	✅ Production Ready
 
+
+⸻
+
+📋 Référence Rapide
+
+### Commandes Essentielles
+
+```bash
+# Démarrer l'application
+docker compose up -d
+
+# Voir les logs en temps réel
+docker compose logs -f backend
+docker compose logs -f frontend
+
+# Arrêter l'application
+docker compose down
+
+# Reset complet (base de données incluse)
+docker compose down -v
+
+# Vérifier l'état des conteneurs
+docker compose ps
+
+# Accéder à MySQL
+docker compose exec db mysql -u eventuser -peventpass eventdb
+```
+
+### URLs Importantes
+
+| Service | URL |
+|---------|-----|
+| Frontend | http://localhost:8000 |
+| Backend API | http://localhost:8081/api |
+| Swagger UI | http://localhost:8081/swagger-ui.html (si configuré) |
+
+### Identifiants Rapides
+
+```
+Admin    : Admin@eventapp.fr / pass123
+User     : sofiabdou2017@gmail.com / Abdou123
+Database : eventuser / eventpass
+```
 
 ⸻
