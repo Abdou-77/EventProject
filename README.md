@@ -1,178 +1,354 @@
-<div align="center"># 🎉 EventApp – Plateforme de Gestion d'Événements# 🎉 EventApp – Plateforme de Gestion d'Événements
+# EventApp - Plateforme de Gestion d'Événements<div align="center"># 🎉 EventApp – Plateforme de Gestion d'Événements# 🎉 EventApp – Plateforme de Gestion d'Événements
 
 
 
-# 🎭 EventApp
+Application full-stack pour créer, découvrir et gérer des événements culturels et sportifs.
 
 
 
-### *Modern Event Management Platform*> Application full-stack moderne pour créer, découvrir et gérer des événements culturels et sportifs.> Application full-stack moderne pour créer, découvrir et gérer des événements culturels et sportifs.
+**Stack:** Angular 20, Spring Boot 3, MySQL 8.4, Docker# 🎭 EventApp
 
 
-
-[![Angular](https://img.shields.io/badge/Angular-20-DD0031?style=flat&logo=angular)](https://angular.io/)> > 
-
-[![Spring Boot](https://img.shields.io/badge/Spring_Boot-3-6DB33F?style=flat&logo=springboot)](https://spring.io/projects/spring-boot)
-
-[![MySQL](https://img.shields.io/badge/MySQL-8.4-4479A1?style=flat&logo=mysql&logoColor=white)](https://www.mysql.com/)> **Stack**: Angular 20 · Spring Boot 3 · MySQL 8.4 · Docker> **Stack**: Angular 20 · Spring Boot 3 · MySQL 8.4 · Docker
-
-[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
-
-> > 
-
-*Full-stack application for discovering and managing cultural events*
-
-> **Projet académique** – Version 1.0 (Novembre 2025)> **Projet académique** – Version 1.0 (Novembre 2025)
-
-[Quick Start](#-quick-start) • [Features](#-features) • [API](#-api) • [Tech Stack](#-tech-stack)
-
-
-
-</div>
-
-------
 
 ---
 
 
 
-## ⚡ Quick Start
+## Démarrage rapide### *Modern Event Management Platform*> Application full-stack moderne pour créer, découvrir et gérer des événements culturels et sportifs.> Application full-stack moderne pour créer, découvrir et gérer des événements culturels et sportifs.
 
-## 🧭 Aperçu Technique## 🧭 Aperçu Technique
+
 
 ```bash
 
-# Start everything
-
 docker compose up -d
 
-| Élément | Stack || Élément | Stack |
+```[![Angular](https://img.shields.io/badge/Angular-20-DD0031?style=flat&logo=angular)](https://angular.io/)> > 
 
-# Open the app
 
-open http://localhost:8000|---------|-------||---------|-------|
+
+Ouvrir http://localhost:8000[![Spring Boot](https://img.shields.io/badge/Spring_Boot-3-6DB33F?style=flat&logo=springboot)](https://spring.io/projects/spring-boot)
+
+
+
+### Comptes de test[![MySQL](https://img.shields.io/badge/MySQL-8.4-4479A1?style=flat&logo=mysql&logoColor=white)](https://www.mysql.com/)> **Stack**: Angular 20 · Spring Boot 3 · MySQL 8.4 · Docker> **Stack**: Angular 20 · Spring Boot 3 · MySQL 8.4 · Docker
+
+
+
+- **Admin:** Admin@eventapp.fr / pass123[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
+
+- **User:** sofiabdou2017@gmail.com / Abdou123
+
+> > 
+
+---
+
+*Full-stack application for discovering and managing cultural events*
+
+## Fonctionnalités
+
+> **Projet académique** – Version 1.0 (Novembre 2025)> **Projet académique** – Version 1.0 (Novembre 2025)
+
+### Utilisateurs
+
+- Catalogue d'événements avec filtres (catégorie, ville, date, prix)[Quick Start](#-quick-start) • [Features](#-features) • [API](#-api) • [Tech Stack](#-tech-stack)
+
+- Système de favoris
+
+- Gestion de profil
+
+- Liens vers billetteries externes
+
+- Interface responsive</div>
+
+
+
+### Administrateurs------
+
+- Création d'événements
+
+- Modification et suppression d'événements---
+
+- Statistiques (vues, favoris)
+
+- Gestion des images
+
+
+
+---## ⚡ Quick Start
+
+
+
+## Architecture## 🧭 Aperçu Technique## 🧭 Aperçu Technique
+
+
+
+``````bash
+
+Browser → Nginx (port 8000) → Angular 20
+
+                            → Spring Boot API (port 8081) → MySQL (port 3306)# Start everything
 
 ```
 
-| **Frontend** | Angular 20 (TypeScript, Standalone Components, Nginx) || **Frontend** | Angular 20 (TypeScript, Standalone Components, Nginx) |
+docker compose up -d
 
-**That's it.** The database will auto-populate with sample data.
+**Services:**
 
-| **Backend** | Spring Boot 3 (Java 21, JPA/Hibernate, Spring Security) || **Backend** | Spring Boot 3 (Java 21, JPA/Hibernate, Spring Security) |
+- Frontend: Angular 20 avec Nginx| Élément | Stack || Élément | Stack |
 
-### 🔑 Test Accounts
+- Backend: Spring Boot 3 avec Java 21
 
-| **Base de données** | MySQL 8.4 (seed automatique au démarrage) || **Base de données** | MySQL 8.4 (seed automatique au démarrage) |
-
-| Role  | Email | Password |
-
-|-------|-------|----------|| **Infra / DevOps** | Docker & Docker Compose || **Infra / DevOps** | Docker & Docker Compose |
-
-| 👑 Admin | `Admin@eventapp.fr` | `pass123` |
-
-| 👤 User | `sofiabdou2017@gmail.com` | `Abdou123` || **Objectif** | Démonstration complète : authentification, favoris, CRUD, responsive design || **Objectif** | Démonstration complète : authentification, favoris, CRUD, responsive design |
+- Database: MySQL 8.4# Open the app
 
 
 
----
+---open http://localhost:8000|---------|-------||---------|-------|
 
 
 
-## ✨ Features------
+## Structure du projet```
 
 
 
-<table>
+```| **Frontend** | Angular 20 (TypeScript, Standalone Components, Nginx) || **Frontend** | Angular 20 (TypeScript, Standalone Components, Nginx) |
+
+EventProject/
+
+├── back-end/              # API Spring Boot**That's it.** The database will auto-populate with sample data.
+
+│   ├── src/main/java/
+
+│   │   └── com/atlas/backend/| **Backend** | Spring Boot 3 (Java 21, JPA/Hibernate, Spring Security) || **Backend** | Spring Boot 3 (Java 21, JPA/Hibernate, Spring Security) |
+
+│   │       ├── controller/
+
+│   │       ├── service/### 🔑 Test Accounts
+
+│   │       ├── repository/
+
+│   │       ├── model/| **Base de données** | MySQL 8.4 (seed automatique au démarrage) || **Base de données** | MySQL 8.4 (seed automatique au démarrage) |
+
+│   │       └── config/
+
+│   └── Dockerfile| Role  | Email | Password |
+
+├── front-end/             # Application Angular
+
+│   ├── src/app/|-------|-------|----------|| **Infra / DevOps** | Docker & Docker Compose || **Infra / DevOps** | Docker & Docker Compose |
+
+│   │   ├── components/
+
+│   │   ├── services/| 👑 Admin | `Admin@eventapp.fr` | `pass123` |
+
+│   │   └── models/
+
+│   └── Dockerfile| 👤 User | `sofiabdou2017@gmail.com` | `Abdou123` || **Objectif** | Démonstration complète : authentification, favoris, CRUD, responsive design || **Objectif** | Démonstration complète : authentification, favoris, CRUD, responsive design |
+
+└── docker-compose.yml
+
+```
+
+
+
+------
+
+
+
+## Endpoints API
+
+
+
+### Événements## ✨ Features------
+
+- `GET /api/events` - Liste des événements
+
+- `GET /api/events/{id}` - Détail d'un événement
+
+- `POST /api/events` - Créer un événement (Admin)
+
+- `PUT /api/events/{id}` - Modifier un événement (Admin)<table>
+
+- `DELETE /api/events/{id}` - Supprimer un événement (Admin)
 
 <tr>
 
-<td width="50%">## ✨ Fonctionnalités✨ Fonctionnalités
+### Favoris
+
+- `GET /api/favorites/user/{id}` - Favoris d'un utilisateur<td width="50%">## ✨ Fonctionnalités✨ Fonctionnalités
+
+- `POST /api/favorites/toggle` - Ajouter/Retirer un favori
 
 
 
-### For Users
+### Authentification
+
+- `POST /api/auth/signup` - Inscription### For Users
+
+- `POST /api/auth/login` - Connexion
 
 - 🔍 **Smart Search** - Filter by category, city, date, price
 
-- ❤️ **Favorites** - Save events you love### 👥 Utilisateurs👥 Utilisateurs
+### Métadonnées
+
+- `GET /api/categories` - Liste des catégories- ❤️ **Favorites** - Save events you love### 👥 Utilisateurs👥 Utilisateurs
+
+- `GET /api/locations` - Liste des villes
 
 - 👤 **Profile** - Personalized user experience
 
+---
+
 - 🎟️ **Tickets** - Direct links to booking platforms- 🔎 **Catalogue d'événements** filtrable (catégorie, ville, date, prix)	•	🔎 Catalogue d’événements filtrable (catégorie, ville, date, prix)
+
+## Base de données
 
 - 📱 **Responsive** - Works on any device
 
-- ❤️ **Système de favoris** persistants	•	❤️ Système de favoris persistants
+La base de données est automatiquement peuplée au premier démarrage avec:
 
-</td>
+- 8 catégories (Musique, Théâtre, Sport, Art, Festival, Gastronomie, Cinéma, Conférence)- ❤️ **Système de favoris** persistants	•	❤️ Système de favoris persistants
+
+- 11 lieux (Paris, Lyon, Marseille, Bordeaux, Nice)
+
+- 36 événements</td>
+
+- 7 utilisateurs (1 admin + 6 utilisateurs)
 
 <td width="50%">- 👤 **Gestion de profil** utilisateur personnalisé	•	👤 Gestion de profil utilisateur
 
+**Réinitialiser la base:**
 
+```bash
 
-### For Admins- 🎟️ **Lien billetterie** externe	•	🎟️ Lien vers billetteries externes
+docker compose down -v
+
+docker compose up -d### For Admins- 🎟️ **Lien billetterie** externe	•	🎟️ Lien vers billetteries externes
+
+```
 
 - ➕ **Create Events** - Rich form with all details
 
+---
+
 - ✏️ **Edit Anytime** - Update events on the fly- 📱 **Interface responsive** (mobile, tablette, desktop)	•	📱 Interface responsive (mobile, tablette, desktop)
+
+## Commandes utiles
 
 - 🗑️ **Safe Delete** - Confirmation before removal
 
-- 📊 **Analytics** - View counts and favorites
+```bash
+
+# Démarrer l'application- 📊 **Analytics** - View counts and favorites
+
+docker compose up -d
 
 - 🖼️ **Media Manager** - Handle images & metadata
 
-### 🧑‍💼 Administrateurs🧑‍💼 Administrateurs
+# Voir les logs
 
-</td>
+docker compose logs -f### 🧑‍💼 Administrateurs🧑‍💼 Administrateurs
+
+
+
+# Arrêter l'application</td>
+
+docker compose down
 
 </tr>- ➕ **Création d'événements** avec formulaire complet	•	➕ Création d’événements
 
-</table>
+# Réinitialiser (base de données incluse)
 
-- ✏️ **Modification / suppression** avec confirmation de sécurité	•	✏️ Modification / suppression avec confirmation
+docker compose down -v</table>
 
----
 
-- 📊 **Vue synthétique** (statistiques de vues et favoris)	•	📊 Vue synthétique (statistiques de vues et favoris)
 
-## 🏗️ Architecture
+# Vérifier l'état- ✏️ **Modification / suppression** avec confirmation de sécurité	•	✏️ Modification / suppression avec confirmation
 
-- 🖼️ **Gestion des images** et métadonnées	•	🖼️ Gestion des images et métadonnées
+docker compose ps
 
-```mermaid
+```---
+
+
+
+---- 📊 **Vue synthétique** (statistiques de vues et favoris)	•	📊 Vue synthétique (statistiques de vues et favoris)
+
+
+
+## Tests## 🏗️ Architecture
+
+
+
+```bash- 🖼️ **Gestion des images** et métadonnées	•	🖼️ Gestion des images et métadonnées
+
+# Backend
+
+cd back-end```mermaid
+
+./mvnw test
 
 graph LR
 
-    A[Browser] --> B[Nginx:8000]
+# Frontend
 
-    B --> C[Angular 20]---⸻
+cd front-end    A[Browser] --> B[Nginx:8000]
+
+npm test
+
+npm run lint    B --> C[Angular 20]---⸻
+
+```
 
     B --> D[Spring Boot:8081]
 
+---
+
     D --> E[(MySQL:3306)]
+
+## Technologies utilisées
 
     
 
-    style A fill:#f9f,stroke:#333,stroke-width:2px## 🏗️ Architecture🏗️ Architecture
+- **Frontend:** Angular 20, TypeScript, RxJS, Nginx
 
-    style C fill:#dd0031,stroke:#333,stroke-width:2px,color:#fff
+- **Backend:** Spring Boot 3, Java 21, JPA/Hibernate, Spring Security    style A fill:#f9f,stroke:#333,stroke-width:2px## 🏗️ Architecture🏗️ Architecture
 
-    style D fill:#6db33f,stroke:#333,stroke-width:2px,color:#fff
+- **Database:** MySQL 8.4
 
-    style E fill:#4479a1,stroke:#333,stroke-width:2px,color:#fff
-
-``````[Browser]
+- **DevOps:** Docker, Docker Compose    style C fill:#dd0031,stroke:#333,stroke-width:2px,color:#fff
 
 
 
----[Browser]   ↓
+---    style D fill:#6db33f,stroke:#333,stroke-width:2px,color:#fff
 
 
 
-## 🎨 Tech Stack   ↓Angular (Frontend - port 8000, Nginx)
+## Dépannage    style E fill:#4479a1,stroke:#333,stroke-width:2px,color:#fff
 
 
+
+- **Frontend ne charge pas:** Faire Ctrl+Shift+R puis vérifier les logs avec `docker compose logs frontend```````[Browser]
+
+- **Backend ne répond pas:** Attendre 60 secondes pour l'initialisation
+
+- **Port déjà utilisé:** `lsof -ti:8000 | xargs kill -9`
+
+
+
+------[Browser]   ↓
+
+
+
+## Contexte
+
+
+
+Projet académique développé dans le cadre du cours de développement full-stack.## 🎨 Tech Stack   ↓Angular (Frontend - port 8000, Nginx)
+
+
+
+**Auteur:** Abdallah Sofi  
+
+**Version:** 1.0 - Novembre 2025
 
 <table>Angular (Frontend - port 8000, Nginx)   ↳ /api → Backend
 
