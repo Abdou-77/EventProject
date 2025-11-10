@@ -47,6 +47,13 @@ export class EventService {
     return this.http.get<Event[]>(`${this.apiUrl}/category/${categoryId}`);
   }
 
+  getEventsByPeriod(startDate: string, endDate: string): Observable<Event[]> {
+    const params = new HttpParams()
+      .set('startDate', startDate)
+      .set('endDate', endDate);
+    return this.http.get<Event[]>(`${this.apiUrl}/period`, { params });
+  }
+
   getEventsByLocation(locationId: number): Observable<Event[]> {
     return this.http.get<Event[]>(`${this.apiUrl}/location/${locationId}`);
   }
