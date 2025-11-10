@@ -20,7 +20,6 @@ L'application sera accessible sur http://localhost:8000
 ## Comptes de test
 
 - **Admin**: Admin@eventapp.fr / pass123
-- **User**: sofiabdou2017@gmail.com / Abdou123
 
 ## Fonctionnalités
 
@@ -88,4 +87,5 @@ docker compose logs -f
 
 ## Auteur
 
-Abdallah Sofi - Projet académique 2025
+Abdellah Sofi - Ali Fassy Fehry
+- Projet académique 2025 -
