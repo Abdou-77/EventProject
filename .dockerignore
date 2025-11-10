@@ -1,0 +1,17 @@
+# Git
+.git
+.gitignore
+
+# Documentation
+*.md
+
+# IDE
+.idea
+.vscode
+*.iml
+
+# Logs
+*.log
+
+# OS
+.DS_Store

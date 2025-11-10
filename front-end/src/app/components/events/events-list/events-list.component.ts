@@ -24,7 +24,6 @@ export class EventsListComponent implements OnInit {
   locations: Location[] = [];
   uniqueCities: string[] = [];
 
-  // Filters
   filters: EventFilter = {
     search: '',
     categoryId: undefined,
@@ -36,13 +35,11 @@ export class EventsListComponent implements OnInit {
     sortOrder: 'asc'
   };
 
-  // UI State
   loading = true;
   showFilters = false;
   viewMode: 'grid' | 'list' = 'grid';
   currentUser: User | null = null;
 
-  // Pagination
   currentPage = 0;
   pageSize = 12;
   totalElements = 0;
@@ -105,11 +102,9 @@ export class EventsListComponent implements OnInit {
   loadEvents(): void {
     this.loading = true;
     
-    // Use published events endpoint with client-side filtering for now
     this.eventService.getPublishedEvents().subscribe({
       next: (events: Event[]) => {
         this.events = events;
-        // Load favorites if user is logged in
         if (this.currentUser && this.currentUser.id) {
           this.loadUserFavorites(this.currentUser.id);
         } else {
@@ -127,7 +122,6 @@ export class EventsListComponent implements OnInit {
   private applyClientSideFilters(): void {
     let filtered = [...this.events];
 
-    // Search filter
     if (this.filters.search) {
       const searchLower = this.filters.search.toLowerCase();
       filtered = filtered.filter(event =>
@@ -137,21 +131,18 @@ export class EventsListComponent implements OnInit {
       );
     }
 
-    // Category filter
     if (this.filters.categoryId) {
       filtered = filtered.filter(event =>
         event.category?.id === Number(this.filters.categoryId)
       );
     }
 
-    // City filter
     if (this.filters.city) {
       filtered = filtered.filter(event =>
         event.location?.city === this.filters.city
       );
     }
 
-    // Price range filter
     if (this.filters.minPrice !== undefined && this.filters.minPrice !== null) {
       filtered = filtered.filter(event =>
         event.price !== undefined && event.price >= this.filters.minPrice!
@@ -163,7 +154,6 @@ export class EventsListComponent implements OnInit {
       );
     }
 
-    // Date filter
     if (this.filters.startDate) {
       const filterDate = new Date(this.filters.startDate);
       filtered = filtered.filter(event => {
@@ -173,7 +163,6 @@ export class EventsListComponent implements OnInit {
       });
     }
 
-    // Sort
     filtered.sort((a, b) => {
       const order = this.filters.sortOrder === 'desc' ? -1 : 1;
       
@@ -186,7 +175,6 @@ export class EventsListComponent implements OnInit {
       } else if (this.filters.sortBy === 'popularity') {
         return ((a.viewCount || 0) - (b.viewCount || 0)) * order;
       } else if (this.filters.sortBy === 'relevance') {
-        // For relevance, prioritize events with search term in title
         if (this.filters.search) {
           const searchLower = this.filters.search.toLowerCase();
           const aInTitle = a.title?.toLowerCase().includes(searchLower) ? 1 : 0;
@@ -197,7 +185,6 @@ export class EventsListComponent implements OnInit {
       return 0;
     });
 
-    // Apply pagination
     this.totalElements = filtered.length;
     this.totalPages = Math.ceil(filtered.length / this.pageSize);
     const start = this.currentPage * this.pageSize;
@@ -276,7 +263,6 @@ export class EventsListComponent implements OnInit {
     if (this.currentPage < this.totalPages - 1) {
       this.currentPage++;
       this.applyClientSideFilters();
-      // Scroll to new content
       window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     }
   }

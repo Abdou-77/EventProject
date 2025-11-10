@@ -30,8 +30,6 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<User> {
-    // For now, we'll simulate login by fetching user by email
-    // In a real app, you'd have a proper login endpoint
     return this.http.get<User>(`${this.apiUrl}/email/${email}`).pipe(
       map(user => {
         if (user && user.password === password) {

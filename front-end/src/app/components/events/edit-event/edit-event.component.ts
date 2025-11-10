@@ -42,14 +42,12 @@ export class EditEventComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Check if user is admin
     const currentUser = this.authService.getCurrentUser();
     if (!currentUser || currentUser.role !== 'ADMIN') {
       this.router.navigate(['/']);
       return;
     }
 
-    // Get event ID from route
     this.route.params.subscribe(params => {
       this.eventId = +params['id'];
       if (this.eventId) {
@@ -65,7 +63,6 @@ export class EditEventComponent implements OnInit {
     this.loadingEvent = true;
     this.eventService.getEventById(id).subscribe({
       next: (event) => {
-        // Format date for datetime-local input
         if (event.date) {
           const dateObj = new Date(event.date);
           const year = dateObj.getFullYear();
@@ -116,7 +113,6 @@ export class EditEventComponent implements OnInit {
     this.error = '';
     this.loading = true;
 
-    // Validation
     if (!this.event.title || !this.event.description || !this.event.date || 
         !this.event.categoryId || !this.event.locationId) {
       this.error = 'Veuillez remplir tous les champs obligatoires';
@@ -124,13 +120,10 @@ export class EditEventComponent implements OnInit {
       return;
     }
 
-    // Prepare event data for backend
     const eventData = {
       ...this.event,
       id: this.eventId,
-      // Convert datetime-local to date only (YYYY-MM-DD)
       date: this.event.date?.split('T')[0],
-      // Extract time if datetime-local includes it
       time: this.event.date?.includes('T') ? this.event.date.split('T')[1] : undefined,
       published: true
     };

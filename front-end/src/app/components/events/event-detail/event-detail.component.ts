@@ -43,10 +43,8 @@ export class EventDetailComponent implements OnInit {
         this.event = event;
         this.loading = false;
         
-        // Increment view count
         this.eventService.incrementViewCount(id).subscribe();
         
-        // Load recommended events
         if (event.categoryId) {
           this.eventService.getEventsByCategory(event.categoryId).subscribe({
             next: (events: Event[]) => {
@@ -93,7 +91,6 @@ export class EventDetailComponent implements OnInit {
         text: this.event.description,
         url: window.location.href
       }).catch(() => {
-        // Fallback: copy to clipboard
         this.copyToClipboard(window.location.href);
       });
     } else {

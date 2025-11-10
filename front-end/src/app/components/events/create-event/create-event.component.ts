@@ -39,7 +39,6 @@ export class CreateEventComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Check if user is admin
     const currentUser = this.authService.getCurrentUser();
     if (!currentUser || currentUser.role !== 'ADMIN') {
       this.router.navigate(['/']);
@@ -76,7 +75,6 @@ export class CreateEventComponent implements OnInit {
     this.error = '';
     this.loading = true;
 
-    // Validation
     if (!this.event.title || !this.event.description || !this.event.date || 
         !this.event.categoryId || !this.event.locationId) {
       this.error = 'Veuillez remplir tous les champs obligatoires';
@@ -84,12 +82,9 @@ export class CreateEventComponent implements OnInit {
       return;
     }
 
-    // Prepare event data for backend
     const eventData = {
       ...this.event,
-      // Convert datetime-local to date only (YYYY-MM-DD)
       date: this.event.date?.split('T')[0],
-      // Extract time if datetime-local includes it
       time: this.event.date?.includes('T') ? this.event.date.split('T')[1] : undefined,
       published: true,
       viewCount: 0
